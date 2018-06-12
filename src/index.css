@@ -7,3 +7,9 @@ body {
 .table td {
     text-align:center;
 }
+
+.top-buffer { margin-top:20px; }
+
+.top-buffer-50 {
+    margin-top:50px;
+}
