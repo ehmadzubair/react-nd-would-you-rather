@@ -1,5 +1,7 @@
 import React from 'react'
 import {Table} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+
 class QuestionsTable extends React.Component {
     render() {
         return (
@@ -11,30 +13,15 @@ class QuestionsTable extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Some Question</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Some Question</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Some Question</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Some Question</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Some Question</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Some Question</td>
-                </tr>
+                  { [1,2,3,4,5].map((num) => {
+                      return (
+                          <tr>
+                            <td>{num}</td>
+                            <td><Link to={`/question/${num}`}> Some Question</Link></td>
+                          </tr>
+                      )
+                  }) }
+
 
               </tbody>
             </Table>

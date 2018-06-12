@@ -24,7 +24,7 @@ class App extends Component {
                   <Switch>
                       <PrivateRoute exact path='/' component={HomePage} />
                       <Route path='/question/add' component={AddQuestion} />
-                      <Route exact path='/question/:question_id' component={QuestionDetail} />
+                      <Route exact path='/question/:question_id' component={QuestionDetail} name="questionDetail" />
                       <Route path='/login' component={Login} />
 
                       <Route component={NoMatch} />

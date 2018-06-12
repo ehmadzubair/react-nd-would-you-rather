@@ -1,7 +1,7 @@
 import React from 'react'
-import {Navbar} from 'react-bootstrap'
+import {Navbar, NavItem} from 'react-bootstrap'
 import fakeAuth from '../utils/AuthService'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Link} from 'react-router-dom'
 
 class NavigationBar extends React.Component {
 
@@ -17,6 +17,12 @@ class NavigationBar extends React.Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
+             <Navbar.Text>
+                <Link to='/question/add'>Add Question</Link>
+            </Navbar.Text>
+            <Navbar.Text>
+               <Link to='/question/add'>Leaderboard</Link>
+           </Navbar.Text>
             <Navbar.Text pullRight>
                 {isAuthenticated ? ('Authenicated') : ('UnAuth')}
             </Navbar.Text>
