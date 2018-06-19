@@ -21,7 +21,7 @@ class NavigationBar extends React.Component {
                 <Link to='/question/add'>Add Question</Link>
             </Navbar.Text>
             <Navbar.Text>
-               <Link to='/question/add'>Leaderboard</Link>
+               <Link to='/leaderboard'>Leaderboard</Link>
            </Navbar.Text>
             <Navbar.Text pullRight>
                 {isAuthenticated ? ('Authenicated') : ('UnAuth')}
