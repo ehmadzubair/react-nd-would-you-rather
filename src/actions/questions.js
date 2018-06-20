@@ -5,18 +5,20 @@ export const GET_QUESTIONS = 'GET_QUESTIONS'
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 
 export function getQuestions() {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         return _getQuestions().then( (questions) => {
-                dispatch(receiveQuestions(questions))
+            const {currentUser} = getState()
+                dispatch(receiveQuestions(questions, currentUser))
             }
 
         )
     }
 }
 
-export function receiveQuestions(questions) {
+export function receiveQuestions(questions, currentUser) {
     return {
         type: RECEIVE_QUESTIONS,
-        questions
+        questions,
+        currentUser
     }
 }
