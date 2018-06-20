@@ -1,23 +1,31 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import fakeAuth from './AuthService'
+import {connect} from 'react-redux'
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      fakeAuth.isAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { from: props.location }
-          }}
-        />
-      )
+class PrivateRoute extends React.Component {
+    render() {
+        const {component: Component, currentUser, ...rest} = this.props
+
+        const renderRoute = props => {
+            if (currentUser) {
+                return (
+                    <Component {...props} />
+                );
+            }
+            const to = {
+                pathname: '/login',
+                state: {from: props.location}
+            };
+            return (<Redirect to={to}/>)
+            }
+
+        return (<Route {...rest} render={renderRoute} />)
     }
-  />
-);
+}
 
-export default PrivateRoute
+
+const mapStateToProps = (state) => ({
+    currentUser: state.currentUser
+})
+
+export default connect(mapStateToProps)(PrivateRoute)

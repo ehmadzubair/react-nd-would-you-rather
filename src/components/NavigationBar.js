@@ -1,12 +1,21 @@
 import React from 'react'
 import {Navbar, NavItem} from 'react-bootstrap'
-import fakeAuth from '../utils/AuthService'
+import {connect} from 'react-redux'
 import {NavLink, Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
+import {logoutUser} from "../actions/user";
 
 class NavigationBar extends React.Component {
 
+    handleLogout = () => {
+        this.props.logout()
+    }
+
     render() {
-        const {isAuthenticated} = this.props
+        const {currentUser} = this.props
+        const username = currentUser && `${currentUser.name}   `
+        const logoutButton = currentUser && <Button onClick={this.handleLogout}>Logout</Button>
+
         return (
         <Navbar inverse>
           <Navbar.Header>
@@ -24,7 +33,8 @@ class NavigationBar extends React.Component {
                <Link to='/leaderboard'>Leaderboard</Link>
            </Navbar.Text>
             <Navbar.Text pullRight>
-                {isAuthenticated ? ('Authenicated') : ('UnAuth')}
+                {username}
+                {logoutButton}
             </Navbar.Text>
           </Navbar.Collapse>
         </Navbar>
@@ -32,7 +42,15 @@ class NavigationBar extends React.Component {
     }
 }
 
-export default NavigationBar
+const mapStateToProps = (state) => ({
+    currentUser: state.currentUser
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    logout: () => dispatch(logoutUser())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar)
 
 
 

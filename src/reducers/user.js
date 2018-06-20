@@ -1,15 +1,22 @@
-import {LOGIN_USER} from '../actions/login'
+import {LOGIN_USER, LOGOUT_USER, RECEIVE_USERS} from '../actions/user'
 
-export function users(state=[], action) {
-    return state
+export function users(state={}, action) {
+    switch (action.type) {
+        case RECEIVE_USERS:
+            return {...state, ...action.users}
+        default:
+            return state
+    }
 }
 
-export function currentUser(state={}, action) {
+export function currentUser(state=null, action) {
     switch (action.type) {
         case LOGIN_USER:
             return {
                 ...action.user
             }
+        case LOGOUT_USER:
+            return null
         default:
             return state
     }
