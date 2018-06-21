@@ -18,11 +18,11 @@ class QuestionsTab extends React.Component {
             <Row className="show-grid">
                 <Col xs={12} md={6} mdOffset={3}>
                     <Tabs defaultActiveKey={1} id="questions-tab">
-                        <Tab eventKey={1} title="Answered">
-                            <QuestionsTable questions={ans_questions.map(q_key => all_questions[q_key])}/>
-                        </Tab>
-                        <Tab eventKey={2} title="Unanswered">
+                        <Tab eventKey={1} title="Unanswered">
                             <QuestionsTable questions={un_ans_questions.map(q_key => all_questions[q_key])}/>
+                        </Tab>
+                        <Tab eventKey={2} title="Answered">
+                            <QuestionsTable questions={ans_questions.map(q_key => all_questions[q_key])}/>
                         </Tab>
                     </Tabs>
                 </Col>

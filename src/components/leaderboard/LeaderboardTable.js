@@ -5,6 +5,7 @@ import {Image, Table} from 'react-bootstrap'
 class LeaderboardTable extends React.Component {
 
     render() {
+        const {users} = this.props
         return (
             <Table striped bordered>
               <thead>
@@ -17,14 +18,14 @@ class LeaderboardTable extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                  { [1,2,3,4,5].map((num) => {
+                  { users.map((user, index) => {
                       return (
-                          <tr>
-                            <td>{num}</td>
-                            <td><Image src='http://via.placeholder.com/100x100' circle /> </td>
-                            <td>Some Name</td>
-                            <td>50</td>
-                            <td>20</td>
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td><Image src='http://via.placeholder.com/50x50' circle /> </td>
+                            <td>{user.name}</td>
+                            <td>{user.questions.length}</td>
+                            <td>{Object.keys(user.answers).length}</td>
                           </tr>
                       )
                   }) }

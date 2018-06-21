@@ -17,6 +17,8 @@ export function currentUser(state=null, action) {
             }
         case LOGOUT_USER:
             return null
+        case RECEIVE_USERS:
+            return state ? action.users[state.id] : null
         default:
             return state
     }

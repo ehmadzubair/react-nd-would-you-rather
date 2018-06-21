@@ -1,6 +1,6 @@
 import {RECEIVE_QUESTIONS} from "../actions/questions";
 
-const formatQuestion = (q, currentUser) => {
+const formatQuestion = (q) => {
     const totalVotes = q.optionOne.votes.length + q.optionTwo.votes.length
     q.optionOne['votePercentage'] = (q.optionOne.votes.length / totalVotes) * 100
     q.optionTwo['votePercentage'] = (q.optionTwo.votes.length / totalVotes) * 100

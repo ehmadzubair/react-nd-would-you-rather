@@ -2,7 +2,7 @@ import React from 'react'
 import {Row, Col, Image, Button} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {getUsers} from "../../actions/user";
-import {getQuestions} from "../../actions/questions";
+import {getQuestions, saveQuestionAnswer} from "../../actions/questions";
 import OptionButton from './OptionButton'
 
 import _ from 'lodash'
@@ -20,11 +20,15 @@ class QuestionDetail extends React.Component {
     }
 
     handleOptionOneClick = () => {
-        console.log('option one clicked')
+        const {currentUser} = this.props
+        const {question_id} = this.props.match.params
+        this.props.saveAnswer(currentUser.id, question_id, 'optionOne')
     }
 
     handleOptionTwoClick = () => {
-        console.log('option two clicked')
+        const {currentUser} = this.props
+        const {question_id} = this.props.match.params
+        this.props.saveAnswer(currentUser.id, question_id, 'optionTwo')
     }
 
     render() {
@@ -38,8 +42,11 @@ class QuestionDetail extends React.Component {
 
         const isAnswered = currentUser && Object.keys(currentUser.answers).includes(question_id)
 
-        const isAnswerOptionOne = question && question.optionOne.votes.includes(currentUser.id)
-        const isAnswerOptionTwo = question && question.optionTwo.votes.includes(currentUser.id)
+        // TODO: Change this to use the User object
+        const {answers} = currentUser
+        const answerOption = answers[question_id] && answers[question_id]
+        const isAnswerOptionOne = answerOption === 'optionOne'
+        const isAnswerOptionTwo = answerOption === 'optionTwo'
 
 
         return (
@@ -108,7 +115,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         getUsers: () => (dispatch(getUsers())),
-        getQuestions: () => (dispatch(getQuestions()))
+        getQuestions: () => (dispatch(getQuestions())),
+        saveAnswer: (user_id, question_id, answer) => (dispatch(saveQuestionAnswer(user_id, question_id, answer)))
     }
 
 }
