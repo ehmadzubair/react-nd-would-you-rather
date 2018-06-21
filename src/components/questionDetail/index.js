@@ -25,9 +25,7 @@ class QuestionDetail extends React.Component {
         const question = questions[question_id]
         const author_key = question && question.author
 
-        const author = author_key && users[author_key]
-
-
+        const author = users[author_key]
 
 
         return (
@@ -37,34 +35,39 @@ class QuestionDetail extends React.Component {
                     <h2>Would You Rather?</h2>
                 </Col>
             </Row>
-            <Row>
+                {question &&
+                <Row>
                 <Col md={4} mdOffset={4}>
-                    <Row>
+                    {author && <Row>
                         <Col md={1} mdOffset={4}>
-                            <Image src="http://via.placeholder.com/30x30" circle />
+                            <Image src={author.avatarURL} circle />
                         </Col>
                         <Col md={3}>
                             {author && author.name}
                         </Col>
                     </Row>
+                    }
                 </Col>
 
-            </Row>
-            <Row className='top-buffer'>
-                <Col md={8} mdOffset={2}>
-                    <Row>
-                        <Col md={6}>
-                            <Button bsStyle='primary' bsSize='large'> {question && question.optionOne.text} </Button>
-                            <p>6 votes, 30%</p>
-                        </Col>
-                        <Col md={6}>
-                            <Button  bsSize='large'> {question && question.optionTwo.text}</Button>
-                            <p>14 votes, 70%</p>
-                        </Col>
-                    </Row>
-                </Col>
+                </Row>}
+                {question &&
+                <Row className='top-buffer'>
+                    <Col md={8} mdOffset={2}>
+                        <Row>
+                            <Col md={6}>
+                                <Button bsStyle='primary'
+                                        bsSize='large'> {question.optionOne.text} </Button>
+                                <p>{question.optionOne.votes.length} votes, {question.optionOne.votePercentage}%</p>
+                            </Col>
+                            <Col md={6}>
+                                <Button bsSize='large'> {question.optionTwo.text}</Button>
+                                <p>{question.optionTwo.votes.length} votes, {question.optionTwo.votePercentage}%</p>
+                            </Col>
+                        </Row>
+                    </Col>
 
-            </Row>
+                </Row>
+                }
         </div>
         )
     }
