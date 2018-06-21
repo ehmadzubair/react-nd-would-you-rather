@@ -1,6 +1,4 @@
-
 import {RECEIVE_QUESTIONS} from "../actions/questions";
-import {LOGIN_USER} from "../actions/user";
 
 const formatQuestion = (q, currentUser) => {
     const totalVotes = q.optionOne.votes.length + q.optionTwo.votes.length
@@ -24,34 +22,4 @@ export function questions(state={}, action) {
     }
 }
 
-const questionSectionsDefaultState = {
-    answeredQuestions: [],
-    unansweredQuestions: []
-}
-
-export function questionSections(state=questionSectionsDefaultState, action) {
-    switch (action.type) {
-        case RECEIVE_QUESTIONS:
-            const {questions, currentUser} = action
-            const {id} = currentUser
-            const answeredQuestions = []
-            const unansweredQuestions = []
-
-            Object.keys(questions).forEach((key) => {
-                const question = questions[key]
-                const allVotes = [...question.optionOne.votes, ...question.optionTwo.votes]
-                allVotes.includes(id) ? answeredQuestions.push(key) : unansweredQuestions.push(key)
-            })
-
-            return {
-                answeredQuestions,
-                unansweredQuestions
-            }
-        case LOGIN_USER:
-            return questionSectionsDefaultState
-        default:
-            return state
-    }
-    return state
-}
 

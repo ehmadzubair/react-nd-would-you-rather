@@ -28,7 +28,7 @@ class QuestionDetail extends React.Component {
     }
 
     render() {
-        const {questions, users, answeredQuestions, currentUser} = this.props
+        const {questions, users, currentUser} = this.props
         const {question_id} = this.props.match.params
 
         const question = questions[question_id]
@@ -36,7 +36,7 @@ class QuestionDetail extends React.Component {
 
         const author = users[author_key]
 
-        const isAnswered = answeredQuestions.includes(question_id)
+        const isAnswered = currentUser && Object.keys(currentUser.answers).includes(question_id)
 
         const isAnswerOptionOne = question && question.optionOne.votes.includes(currentUser.id)
         const isAnswerOptionTwo = question && question.optionTwo.votes.includes(currentUser.id)
@@ -102,7 +102,6 @@ class QuestionDetail extends React.Component {
 const mapStateToProps = (state) => ({
     questions: state.questions,
     users: state.users,
-    answeredQuestions: state.questionSections.answeredQuestions,
     currentUser: state.currentUser
 })
 

@@ -4,6 +4,7 @@ import QuestionsTable from './QuestionsTable'
 import {connect} from 'react-redux'
 
 import {getQuestions} from "../../actions/questions";
+import _ from 'lodash'
 
 class QuestionsTab extends React.Component {
 
@@ -13,7 +14,7 @@ class QuestionsTab extends React.Component {
 
     render() {
         const {ans_questions, un_ans_questions, all_questions} = this.props
-        return (
+        return !_.isEmpty(all_questions) && (
             <Row className="show-grid">
                 <Col xs={12} md={6} mdOffset={3}>
                     <Tabs defaultActiveKey={1} id="questions-tab">
@@ -32,11 +33,15 @@ class QuestionsTab extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
-    ans_questions: state.questionSections.answeredQuestions,
-    un_ans_questions: state.questionSections.unansweredQuestions,
-    all_questions: state.questions
-})
+const mapStateToProps = (state) => {
+    const ans_questions = Object.keys(state.currentUser.answers)
+    const un_ans_questions = Object.keys(state.questions).filter( x => !ans_questions.includes(x))
+    return {
+        ans_questions,
+        un_ans_questions,
+        all_questions: state.questions
+    }
+}
 
 const mapDispatchToProps = (dispatch) => ({
     getQuestions: () => dispatch(getQuestions())

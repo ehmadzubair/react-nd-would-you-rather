@@ -1,13 +1,12 @@
 import React from 'react'
 import { combineReducers } from 'redux'
 import {currentUser, users} from './user'
-import {questions, questionSections} from './questions'
+import {questions} from './questions'
 
 const wyrApp = combineReducers({
     currentUser,
     users,
-    questions,
-    questionSections
+    questions
 })
 
 export default wyrApp
