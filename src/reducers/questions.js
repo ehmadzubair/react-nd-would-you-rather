@@ -2,7 +2,7 @@
 import {RECEIVE_QUESTIONS} from "../actions/questions";
 import {LOGIN_USER} from "../actions/user";
 
-const updatePercentageForQuestion = (q) => {
+const formatQuestion = (q, currentUser) => {
     const totalVotes = q.optionOne.votes.length + q.optionTwo.votes.length
     q.optionOne['votePercentage'] = (q.optionOne.votes.length / totalVotes) * 100
     q.optionTwo['votePercentage'] = (q.optionTwo.votes.length / totalVotes) * 100
@@ -15,7 +15,7 @@ export function questions(state={}, action) {
 
             Object.keys(questions).forEach((key) => {
                 const q = questions[key]
-                updatePercentageForQuestion(q)
+                formatQuestion(q)
             })
 
             return {...state, ...action.questions}
@@ -24,12 +24,12 @@ export function questions(state={}, action) {
     }
 }
 
-const questionsSectionsDefaultState = {
+const questionSectionsDefaultState = {
     answeredQuestions: [],
     unansweredQuestions: []
 }
 
-export function questionSections(state=questionsSectionsDefaultState, action) {
+export function questionSections(state=questionSectionsDefaultState, action) {
     switch (action.type) {
         case RECEIVE_QUESTIONS:
             const {questions, currentUser} = action
@@ -48,7 +48,7 @@ export function questionSections(state=questionsSectionsDefaultState, action) {
                 unansweredQuestions
             }
         case LOGIN_USER:
-            return questionsSectionsDefaultState
+            return questionSectionsDefaultState
         default:
             return state
     }

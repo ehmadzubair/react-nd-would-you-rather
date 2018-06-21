@@ -3,6 +3,7 @@ import {Row, Col, Image, Button} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {getUsers} from "../../actions/user";
 import {getQuestions} from "../../actions/questions";
+import OptionButton from './OptionButton'
 
 import _ from 'lodash'
 
@@ -18,14 +19,27 @@ class QuestionDetail extends React.Component {
         }
     }
 
+    handleOptionOneClick = () => {
+        console.log('option one clicked')
+    }
+
+    handleOptionTwoClick = () => {
+        console.log('option two clicked')
+    }
+
     render() {
-        const {questions, users} = this.props
+        const {questions, users, answeredQuestions, currentUser} = this.props
         const {question_id} = this.props.match.params
 
         const question = questions[question_id]
         const author_key = question && question.author
 
         const author = users[author_key]
+
+        const isAnswered = answeredQuestions.includes(question_id)
+
+        const isAnswerOptionOne = question && question.optionOne.votes.includes(currentUser.id)
+        const isAnswerOptionTwo = question && question.optionTwo.votes.includes(currentUser.id)
 
 
         return (
@@ -55,13 +69,24 @@ class QuestionDetail extends React.Component {
                     <Col md={8} mdOffset={2}>
                         <Row>
                             <Col md={6}>
-                                <Button bsStyle='primary'
-                                        bsSize='large'> {question.optionOne.text} </Button>
-                                <p>{question.optionOne.votes.length} votes, {question.optionOne.votePercentage}%</p>
+                                <OptionButton
+                                    isSelected={isAnswerOptionOne}
+                                    isDisabled={isAnswered}
+                                    title={question.optionOne.text}
+                                    numVotes={question.optionOne.votes.length}
+                                    votePercentage={question.optionOne.votePercentage}
+                                    handleClick={this.handleOptionOneClick}
+                                />
                             </Col>
                             <Col md={6}>
-                                <Button bsSize='large'> {question.optionTwo.text}</Button>
-                                <p>{question.optionTwo.votes.length} votes, {question.optionTwo.votePercentage}%</p>
+                                <OptionButton
+                                    isSelected={isAnswerOptionTwo}
+                                    isDisabled={isAnswered}
+                                    title={question.optionTwo.text}
+                                    numVotes={question.optionTwo.votes.length}
+                                    votePercentage={question.optionTwo.votePercentage}
+                                    handleClick={this.handleOptionTwoClick}
+                                />
                             </Col>
                         </Row>
                     </Col>
@@ -76,7 +101,9 @@ class QuestionDetail extends React.Component {
 
 const mapStateToProps = (state) => ({
     questions: state.questions,
-    users: state.users
+    users: state.users,
+    answeredQuestions: state.questionSections.answeredQuestions,
+    currentUser: state.currentUser
 })
 
 const mapDispatchToProps = (dispatch) => {
