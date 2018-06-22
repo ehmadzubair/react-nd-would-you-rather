@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import fakeAuth from './utils/AuthService'
 
 import AddQuestion from './components/addQuestion'
 import NavBar from './components/NavigationBar'
@@ -21,7 +19,7 @@ class App extends Component {
 
           <BrowserRouter>
               <div>
-                  <NavBar isAuthenticated={fakeAuth.isAuthenticated}/>
+                  <NavBar/>
                   <Switch>
                       <PrivateRoute exact path='/' component={HomePage} />
                       <PrivateRoute path='/question/add' component={AddQuestion} />

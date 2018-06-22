@@ -1,6 +1,5 @@
 
 import {_getQuestions, _saveQuestion, _saveQuestionAnswer} from "../files/_DATA";
-import {getUsers} from "./user";
 import {updateQuestionsAndUsers} from "./shared";
 
 export const ADD_QUESTION = 'ADD_QUESTION'

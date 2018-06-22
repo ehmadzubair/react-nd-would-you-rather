@@ -13,7 +13,7 @@ class UserPicker extends React.Component {
 
     render() {
         const {users, selectedUser, handleUserSelect} = this.props
-        const title = selectedUser && selectedUser.name || 'Select User...'
+        const title = (selectedUser && selectedUser.name) || 'Select User...'
 
         return (
             <DropdownButton

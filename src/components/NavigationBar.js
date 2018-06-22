@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar, NavItem} from 'react-bootstrap'
+import {Navbar} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {NavLink, Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
@@ -52,22 +52,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar)
 
-
-
-// const AuthButton = withRouter(
-//   ({ history }) =>
-//     fakeAuth.isAuthenticated ? (
-//       <p>
-//         Welcome!{" "}
-//         <button
-//           onClick={() => {
-//             fakeAuth.signout(() => history.push("/"));
-//           }}
-//         >
-//           Sign out
-//         </button>
-//       </p>
-//     ) : (
-//       <p>You are not logged in.</p>
-//     )
-// );

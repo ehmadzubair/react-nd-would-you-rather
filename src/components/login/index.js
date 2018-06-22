@@ -1,13 +1,8 @@
 import React from 'react'
-import fakeAuth from '../../utils/AuthService'
 import { Redirect } from 'react-router-dom'
 import {getUsers, loginUser} from '../../actions/user'
 
-
-import {dispatch} from 'redux'
 import { connect } from 'react-redux'
-
-import {DropdownButton, MenuItem} from 'react-bootstrap'
 
 import UserPicker from './UserPicker'
 
