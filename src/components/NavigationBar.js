@@ -27,7 +27,7 @@ class NavigationBar extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
              <Navbar.Text>
-                <Link to='/question/add'>Add Question</Link>
+                <Link to='/add'>Add Question</Link>
             </Navbar.Text>
             <Navbar.Text>
                <Link to='/leaderboard'>Leaderboard</Link>

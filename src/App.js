@@ -22,7 +22,7 @@ class App extends Component {
                   <NavBar/>
                   <Switch>
                       <PrivateRoute exact path='/' component={HomePage} />
-                      <PrivateRoute path='/question/add' component={AddQuestion} />
+                      <PrivateRoute path='/add' component={AddQuestion} />
                       <PrivateRoute exact path='/question/:question_id' component={QuestionDetail} />
                       <PrivateRoute path='/leaderboard' component={Leaderboard} />
                       <Route path='/login' component={Login} />
