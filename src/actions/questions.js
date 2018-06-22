@@ -35,7 +35,6 @@ export function saveQuestionAnswer(user, question_id, answer) {
 
 export function addNewQuestion(optionOneText, optionTwoText, userId) {
     return (dispatch) => {
-        debugger;
         return _saveQuestion({
             optionOneText,
             optionTwoText,
