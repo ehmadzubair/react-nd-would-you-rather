@@ -13,16 +13,23 @@ class QuestionsTab extends React.Component {
     }
 
     render() {
-        const {ans_questions, un_ans_questions, all_questions} = this.props
+        let {ans_questions, un_ans_questions, all_questions} = this.props
+
+        un_ans_questions = un_ans_questions.map(q_key => all_questions[q_key])
+        un_ans_questions.sort((a,b) => a.timestamp < b.timestamp)
+
+        ans_questions = ans_questions.map(q_key => all_questions[q_key])
+        ans_questions.sort((a,b) => a.timestamp < b.timestamp)
+
         return !_.isEmpty(all_questions) && (
             <Row className="show-grid">
                 <Col xs={12} md={6} mdOffset={3}>
                     <Tabs defaultActiveKey={1} id="questions-tab">
                         <Tab eventKey={1} title="Unanswered">
-                            <QuestionsTable questions={un_ans_questions.map(q_key => all_questions[q_key])}/>
+                            <QuestionsTable questions={un_ans_questions}/>
                         </Tab>
                         <Tab eventKey={2} title="Answered">
-                            <QuestionsTable questions={ans_questions.map(q_key => all_questions[q_key])}/>
+                            <QuestionsTable questions={ans_questions}/>
                         </Tab>
                     </Tabs>
                 </Col>
