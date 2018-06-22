@@ -24,7 +24,7 @@ class App extends Component {
                   <NavBar isAuthenticated={fakeAuth.isAuthenticated}/>
                   <Switch>
                       <PrivateRoute exact path='/' component={HomePage} />
-                      <Route path='/question/add' component={AddQuestion} />
+                      <PrivateRoute path='/question/add' component={AddQuestion} />
                       <PrivateRoute exact path='/question/:question_id' component={QuestionDetail} />
                       <Route path='/leaderboard' component={Leaderboard} />
                       <Route path='/login' component={Login} />

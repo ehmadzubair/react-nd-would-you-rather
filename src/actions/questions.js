@@ -1,8 +1,9 @@
 
-import {_getQuestions, _saveQuestionAnswer} from "../files/_DATA";
+import {_getQuestions, _saveQuestion, _saveQuestionAnswer} from "../files/_DATA";
 import {getUsers} from "./user";
+import {updateQuestionsAndUsers} from "./shared";
 
-export const GET_QUESTIONS = 'GET_QUESTIONS'
+export const ADD_QUESTION = 'ADD_QUESTION'
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 
 export function getQuestions() {
@@ -27,8 +28,21 @@ export function saveQuestionAnswer(user, question_id, answer) {
             qid:question_id,
             answer
         }).then(() => {
-            dispatch(getQuestions())
-            dispatch(getUsers())
+            updateQuestionsAndUsers(dispatch)
+        })
+    }
+}
+
+
+export function addNewQuestion(optionOneText, optionTwoText, userId) {
+    return (dispatch) => {
+        debugger;
+        return _saveQuestion({
+            optionOneText,
+            optionTwoText,
+            author: userId
+        }).then(() => {
+            updateQuestionsAndUsers(dispatch)
         })
     }
 }

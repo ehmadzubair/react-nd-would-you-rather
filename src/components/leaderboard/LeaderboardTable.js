@@ -22,7 +22,7 @@ class LeaderboardTable extends React.Component {
                       return (
                           <tr key={index}>
                             <td>{index + 1}</td>
-                            <td><Image src='http://via.placeholder.com/50x50' circle /> </td>
+                            <td><Image src={user.avatarURL} circle /> </td>
                             <td>{user.name}</td>
                             <td>{user.questions.length}</td>
                             <td>{Object.keys(user.answers).length}</td>

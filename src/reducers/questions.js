@@ -1,4 +1,4 @@
-import {RECEIVE_QUESTIONS} from "../actions/questions";
+import {ADD_QUESTION, RECEIVE_QUESTIONS} from "../actions/questions";
 
 const formatQuestion = (q) => {
     const totalVotes = q.optionOne.votes.length + q.optionTwo.votes.length
@@ -17,6 +17,14 @@ export function questions(state={}, action) {
             })
 
             return {...state, ...action.questions}
+
+        case ADD_QUESTION:
+            let {question} = action
+            question = formatQuestion(question)
+            return {
+                ...state,
+                [question.id]: question
+            }
         default:
             return state
     }
