@@ -2,18 +2,8 @@ import React from 'react'
 import LeaderboardTable from './LeaderboardTable'
 import {Row, Col} from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {getUsers} from "../../actions/user";
-import _ from 'lodash'
 
 class LeaderboardPage extends React.Component {
-
-    componentDidMount() {
-        const {users, getUsers} = this.props
-
-        if (_.isEmpty(users)) {
-            getUsers()
-        }
-    }
 
     render() {
         return (
@@ -41,9 +31,4 @@ const mapStateToProps = (state) => {
     return {users}
 }
 
-
-const mapDispatchToProps = (dispatch) => ({
-    getUsers: () => (dispatch(getUsers()))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(LeaderboardPage)
+export default connect(mapStateToProps)(LeaderboardPage)
