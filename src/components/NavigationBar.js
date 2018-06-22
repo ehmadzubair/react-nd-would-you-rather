@@ -43,7 +43,7 @@ class NavigationBar extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    currentUser: state.currentUser
+    currentUser: state.users[state.currentUser]
 })
 
 const mapDispatchToProps = (dispatch) => ({

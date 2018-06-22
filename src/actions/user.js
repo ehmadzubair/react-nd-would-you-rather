@@ -21,10 +21,10 @@ export function receiveUsers(users) {
     }
 }
 
-export function loginUser(user) {
+export function loginUser(userId) {
     return {
         type: LOGIN_USER,
-        user
+        userId
     }
 }
 

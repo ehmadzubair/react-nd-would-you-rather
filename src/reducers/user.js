@@ -24,13 +24,9 @@ export function users(state={}, action) {
 export function currentUser(state=null, action) {
     switch (action.type) {
         case LOGIN_USER:
-            return {
-                ...action.user
-            }
+            return action.userId
         case LOGOUT_USER:
             return null
-        case RECEIVE_USERS:
-            return state ? action.users[state.id] : null
         default:
             return state
     }

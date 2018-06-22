@@ -109,7 +109,7 @@ class QuestionDetail extends React.Component {
 const mapStateToProps = (state) => ({
     questions: state.questions,
     users: state.users,
-    currentUser: state.currentUser
+    currentUser: state.users[state.currentUser]
 })
 
 const mapDispatchToProps = (dispatch) => {

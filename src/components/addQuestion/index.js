@@ -20,8 +20,8 @@ class AddQuestion extends React.Component {
 
     handleSubmit = () => {
         const {optionOneValue, optionTwoValue} = this.state
-        const {currentUser, history, postAQuestion} = this.props
-        postAQuestion(optionOneValue, optionTwoValue, currentUser.id)
+        const {currentUser, history, addQuestion} = this.props
+        addQuestion(optionOneValue, optionTwoValue, currentUser)
         history.push('/')
     }
 
@@ -65,13 +65,8 @@ const mapStateToProps = (state) => ({
     currentUser: state.currentUser
 })
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        postAQuestion: (o1, o2, user_id) => {
-            debugger;
-            return dispatch(addNewQuestion(o1, o2, user_id))
-        }
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+    addQuestion: (o1, o2, userId) => (dispatch(addNewQuestion(o1,o2,userId)))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion)

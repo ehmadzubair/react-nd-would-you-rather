@@ -34,12 +34,13 @@ class QuestionsTab extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const ans_questions = Object.keys(state.currentUser.answers)
-    const un_ans_questions = Object.keys(state.questions).filter( x => !ans_questions.includes(x))
+    const {users, currentUser, questions} = state
+    const ans_questions = Object.keys(users[currentUser].answers)
+    const un_ans_questions = Object.keys(questions).filter( x => !ans_questions.includes(x))
     return {
         ans_questions,
         un_ans_questions,
-        all_questions: state.questions
+        all_questions: questions
     }
 }
 

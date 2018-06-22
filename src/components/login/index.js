@@ -18,7 +18,7 @@ class Login extends React.Component {
   };
 
   login = () => {
-      this.props.login(this.state.selectedUser)
+      this.props.login(this.state.selectedUser.id)
   };
 
   componentDidMount() {
