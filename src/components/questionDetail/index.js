@@ -6,6 +6,7 @@ import {getQuestions, saveQuestionAnswer} from "../../actions/questions";
 import OptionButton from './OptionButton'
 
 import _ from 'lodash'
+import {Redirect} from "react-router-dom";
 
 class QuestionDetail extends React.Component {
 
@@ -36,6 +37,10 @@ class QuestionDetail extends React.Component {
         const {question_id} = this.props.match.params
 
         const question = questions[question_id]
+
+        if (!question) {
+            return <Redirect to={{pathname:'/notfound'}}/>
+        }
         const author_key = question && question.author
 
         const author = users[author_key]
