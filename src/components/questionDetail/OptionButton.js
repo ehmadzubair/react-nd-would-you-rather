@@ -3,17 +3,17 @@ import {Button} from 'react-bootstrap'
 
 class OptionButton extends React.Component {
     render() {
-        const {isSelected, isDisabled, title, numVotes, votePercentage, handleClick} = this.props
+        const {isSelected, isAnswered, title, numVotes, votePercentage, handleClick} = this.props
 
         return (
             <div>
             <Button bsStyle={isSelected ? 'primary' : 'default'}
                     bsSize='large'
-                    disabled={isDisabled}
+                    disabled={isAnswered}
                     onClick={handleClick}
             >
                 {title} </Button>
-                < p > {numVotes} votes, {votePercentage}% </p>
+                {isAnswered && < p > {numVotes} votes, {votePercentage}% </p>}
             </div>
         )
     }

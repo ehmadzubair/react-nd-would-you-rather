@@ -83,7 +83,7 @@ class QuestionDetail extends React.Component {
                             <Col md={6}>
                                 <OptionButton
                                     isSelected={isAnswerOptionOne}
-                                    isDisabled={isAnswered}
+                                    isAnswered={isAnswered}
                                     title={question.optionOne.text}
                                     numVotes={question.optionOne.votes.length}
                                     votePercentage={question.optionOne.votePercentage}
@@ -93,7 +93,7 @@ class QuestionDetail extends React.Component {
                             <Col md={6}>
                                 <OptionButton
                                     isSelected={isAnswerOptionTwo}
-                                    isDisabled={isAnswered}
+                                    isAnswered={isAnswered}
                                     title={question.optionTwo.text}
                                     numVotes={question.optionTwo.votes.length}
                                     votePercentage={question.optionTwo.votePercentage}
