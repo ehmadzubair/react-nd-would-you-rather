@@ -13,11 +13,11 @@ class Login extends React.Component {
   };
 
   login = () => {
-      this.props.login(this.state.selectedUser.id)
+      this.props.loginUser(this.state.selectedUser.id)
   };
 
   componentDidMount() {
-      this.props.fetchUsers()
+      this.props.getUsers()
   }
 
   handleUserSelect = (k, event) => {
@@ -54,16 +54,11 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-    users: state.users,
-    currentUser: state.currentUser
-})
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = ({users, currentUser}) => {
     return {
-        fetchUsers: () => (dispatch(getUsers())),
-        login: (user) => (dispatch(loginUser(user)))
+        users,
+        currentUser
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, {getUsers, loginUser})(Login)
