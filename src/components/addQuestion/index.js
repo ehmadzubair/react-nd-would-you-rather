@@ -21,8 +21,11 @@ class AddQuestion extends React.Component {
     handleSubmit = () => {
         const {optionOneValue, optionTwoValue} = this.state
         const {currentUser, history, addNewQuestion} = this.props
-        addNewQuestion(optionOneValue, optionTwoValue, currentUser)
-        history.push('/')
+        if (optionOneValue && optionTwoValue) {
+            addNewQuestion(optionOneValue, optionTwoValue, currentUser)
+            history.push('/')
+        }
+
     }
 
     render() {

@@ -23,13 +23,13 @@ class QuestionDetail extends React.Component {
     handleOptionOneClick = () => {
         const {currentUser} = this.props
         const {question_id} = this.props.match.params
-        this.props.saveAnswer(currentUser.id, question_id, 'optionOne')
+        this.props.saveQuestionAnswer(currentUser.id, question_id, 'optionOne')
     }
 
     handleOptionTwoClick = () => {
         const {currentUser} = this.props
         const {question_id} = this.props.match.params
-        this.props.saveAnswer(currentUser.id, question_id, 'optionTwo')
+        this.props.saveQuestionAnswer(currentUser.id, question_id, 'optionTwo')
     }
 
     render() {
@@ -117,13 +117,4 @@ const mapStateToProps = (state) => ({
     currentUser: state.users[state.currentUser]
 })
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getUsers: () => (dispatch(getUsers())),
-        getQuestions: () => (dispatch(getQuestions())),
-        saveAnswer: (user_id, question_id, answer) => (dispatch(saveQuestionAnswer(user_id, question_id, answer)))
-    }
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetail)
+export default connect(mapStateToProps, {getUsers, getQuestions, saveQuestionAnswer})(QuestionDetail)

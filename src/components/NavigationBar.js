@@ -8,7 +8,7 @@ import {logoutUser} from "../actions/user";
 class NavigationBar extends React.Component {
 
     handleLogout = () => {
-        this.props.logout()
+        this.props.logoutUser()
     }
 
     render() {
@@ -46,9 +46,5 @@ const mapStateToProps = (state) => ({
     currentUser: state.users[state.currentUser]
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    logout: () => dispatch(logoutUser())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar)
+export default connect(mapStateToProps, {logoutUser})(NavigationBar)
 

@@ -51,9 +51,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    getQuestions: () => dispatch(getQuestions())
-})
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionsTab)
+export default connect(mapStateToProps, {getQuestions})(QuestionsTab)
